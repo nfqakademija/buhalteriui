@@ -3,6 +3,8 @@
 NFQ Akademija
 ============
 
+# pagalba buhalteriui
+
 # Intro
 
 Sveiki! Tai yra Jūsų startinis projekto "template". 
@@ -120,3 +122,4 @@ kad žinotumei, kur kreiptis toliau.
 
 Jeigu taip nutiktų, kad repositorijoje, projekto template ar instrukcijoje rastumėte klaidą, tai nesišnibždėkite vieni tarp kitų, o sukurkite "issue". 
 O jei atidarysite "pull requestą" su fixu, gausite iškart 1000 karmos taškų.
+
