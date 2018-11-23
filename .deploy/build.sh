@@ -7,7 +7,7 @@ set -e # Stop on error
 set -x # Show commands being executed
 
 # Downloading dependencies and building frontend
-composer install --no-dev --no-scripts --no-interaction --optimize-autoloader
+composer install --no-dev --no-scripts --no-interaction --optimize-autoloader --ignore-platform-reqs
 yarn
 yarn run encore production
 
