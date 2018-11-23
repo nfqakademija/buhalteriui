@@ -55,13 +55,4 @@ class ImageSlicerController extends AbstractController
             'slices' => $imageSlices,
         ]);
     }
-    
-    /**
-     * @Route("/image/test", name="image_test")
-     */
-    public function phpinfo()
-    {
-        phpinfo();
-        exit;
-    }
 }
