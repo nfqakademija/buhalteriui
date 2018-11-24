@@ -8,14 +8,14 @@ use Doctrine\Migrations\AbstractMigration;
 /**
  * Auto-generated Migration: Please modify to your needs!
  */
-final class Version20181123152614 extends AbstractMigration
+final class Version20181124095840 extends AbstractMigration
 {
     public function up(Schema $schema) : void
     {
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE document ADD final_sum DOUBLE PRECISION DEFAULT NULL');
+        $this->addSql('CREATE TABLE document (id INT AUTO_INCREMENT NOT NULL, original_file_path VARCHAR(255) NOT NULL, created_at DATETIME NOT NULL, final_sum DOUBLE PRECISION DEFAULT NULL, serial_nr INT DEFAULT NULL, requisites LONGTEXT DEFAULT NULL, document_date DATE DEFAULT NULL, PRIMARY KEY(id)) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci ENGINE = InnoDB');
     }
 
     public function down(Schema $schema) : void
@@ -23,6 +23,6 @@ final class Version20181123152614 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE document DROP final_sum');
+        $this->addSql('DROP TABLE document');
     }
 }

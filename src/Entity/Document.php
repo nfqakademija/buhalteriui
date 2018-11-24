@@ -37,6 +37,27 @@ class Document
      */
     private $finalSum;
 
+    /**
+     * @var int|null
+     *
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $serialNr;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $requisites;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $documentDate;
+
 
     /**
      */
@@ -83,6 +104,42 @@ class Document
     public function setFinalSum(?float $finalSum): self
     {
         $this->finalSum = $finalSum;
+
+        return $this;
+    }
+
+    public function getSerialNr(): ?int
+    {
+        return $this->serialNr;
+    }
+
+    public function setSerialNr(?int $serialNr): self
+    {
+        $this->serialNr = $serialNr;
+
+        return $this;
+    }
+
+    public function getRequisites(): ?string
+    {
+        return $this->requisites;
+    }
+
+    public function setRequisites(?string $requisites): self
+    {
+        $this->requisites = $requisites;
+
+        return $this;
+    }
+
+    public function getDocumentDate(): ?\DateTimeInterface
+    {
+        return $this->documentDate;
+    }
+
+    public function setDocumentDate(?\DateTimeInterface $documentDate): self
+    {
+        $this->documentDate = $documentDate;
 
         return $this;
     }

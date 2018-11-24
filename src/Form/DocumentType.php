@@ -14,6 +14,18 @@ class DocumentType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('serialNr', NumberType::class, [
+                'label' => 'Serijos numeris',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('requisites', TextareaType::class, [
+                'label' => 'Rekvizitai',
+                'attr' => ['class' => 'form-control']
+            ])
+            ->add('documentDate', DateType::class, [
+                'label' => 'Data',
+                'attr' => ['class' => 'form-control']
+            ])
             ->add('finalSum', NumberType::class, [
                 'label' => 'Galutine suma',
                 'attr' => ['class' => 'form-control']
