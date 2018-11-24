@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello!{% endblock %}
+
+{% block body %}
+<header class="jumbotron bg-dark text-white text-center">
+        <h1>Redaguokite savo sąskaitą</h1>
+    </header>
+    <main class="container">
+        <section class="row jumbotron">
+            <article class="col-md-6">
+                <img class="img-fluid" src="/uploads/bills/{{ file }}" />
+            </article>
+            <article class="col-md-6">
+                <div class="card-body">
+                    {{ form(form) }}
+                </div>
+            </article>
+        </section>
+    </main>
+{% endblock %}
