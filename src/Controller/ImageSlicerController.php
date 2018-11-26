@@ -202,4 +202,12 @@ class ImageSlicerController extends Controller
         
         return $text;
     }
+    
+    /**
+     * @Route("/image/version", name="image_version")
+     */
+    public function version()
+    {
+        return $this->json(['v' => 1]);
+    }
 }
