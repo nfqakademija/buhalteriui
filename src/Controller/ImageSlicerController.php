@@ -21,7 +21,8 @@ class ImageSlicerController extends Controller
         //$projectDir = $this->get('kernel')->getProjectDir() . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
         $projectDir = 'uploads/';
         $billsDir = $projectDir . 'bills/';
-        $slicesDir = $this->get('kernel')->getProjectDir() . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'slices' . DIRECTORY_SEPARATOR;
+        $slicesDir = $projectDir . 'slices/';
+        //$slicesDir = $this->get('kernel')->getProjectDir() . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'slices' . DIRECTORY_SEPARATOR;
         
         $billImagePath = $billsDir . $document->getOriginalFilePath();
         
@@ -208,6 +209,9 @@ class ImageSlicerController extends Controller
      */
     public function version()
     {
-        return $this->json(['v' => 1]);
+        return $this->json([
+            'v' => 1,
+            'project_dir' => $this->get('kernel')->getProjectDir(),
+        ]);
     }
 }
