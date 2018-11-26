@@ -3,24 +3,27 @@
 {% block title %}Slices{% endblock %}
 
 {% block body %}
+    <div class="example-wrapper" style="padding: 20px">
+        <table cellpadding="0" cellspacing="0" width="100%" border="1">
+            {% for slice in slices %}
+                <tr>
+                    <td width="34%" valign="top">
+                        <a href="{{ asset( '/' ~ slice.file_path) }}" target="_blank"><img
+                                    src="{{ asset( '/' ~ slice.file_path) }}" alt="" width="100%"/></a>
+                    </td>
+                    <td width="33%" valign="top">
+                        <div style="font-weight:bold">{{ slice.key }}</div>
+                        <div>{{ slice.file_name }}</div>
+                        <div>X: {{ slice.box.x }}; Y: {{ slice.box.y }}; {{ slice.box.width }}
+                            x{{ slice.box.height }}</div>
+                    </td>
+                    <td width="33%" valign="top">
+                        <pre>{{ slice.text }}</pre>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
 
-<div class="example-wrapper" style="padding: 20px 50px">
-    <table cellpadding="0" cellspacing="0" width="100%" border="1">
-        {% for slice in slices %}
-        <tr>
-            <td width="34%" valign="top">
-                <a href="{{ asset( '/' ~ slice.file_path) }}" target="_blank"><img src="{{ asset( '/' ~ slice.file_path) }}" alt="" width="100%" /></a>
-            </td>
-            <td width="33%" valign="top">
-                <div style="font-weight:bold">{{ slice.key }}</div>
-                <div>{{ slice.file_name }}</div>
-                <div>X: {{ slice.box.x }}; Y: {{ slice.box.y }}; {{ slice.box.width }}x{{ slice.box.height }}</div>
-            </td>
-            <td width="33%" valign="top">
-                <pre>{{ slice.text }}</pre>
-            </td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+        <img src="{{ asset( '/' ~ bill_image_path) }}" alt="" width="50%"/>
+    </div>
 {% endblock %}
