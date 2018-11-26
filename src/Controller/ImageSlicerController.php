@@ -21,7 +21,7 @@ class ImageSlicerController extends Controller
         //$projectDir = $this->get('kernel')->getProjectDir() . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
         $projectDir = 'uploads/';
         $billsDir = $projectDir . 'bills/';
-        $slicesDir = $projectDir . 'slices/';
+        $slicesDir = $this->get('kernel')->getProjectDir() . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'slices' . DIRECTORY_SEPARATOR;
         
         $billImagePath = $billsDir . $document->getOriginalFilePath();
         
