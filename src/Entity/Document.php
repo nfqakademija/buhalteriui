@@ -9,138 +9,262 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Document
 {
+    const STATUS_PROCESSING = 'procesing';
+    const STATUS_SUCCESS = 'success';
+    const STATUS_ERROR = 'error';
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    private $documentId;
+
+    /**
+     * @ORM\Column(type="integer", options={"default"=0}, nullable=true)
+     */
+    private $templateId;
 
     /**
      * @var string|null
      * 
      * @ORM\Column(type="string", length=255)
      */
-    private $originalFilePath;
+    private $originalFile;
 
     /**
-     * @var \DateTime
-     * 
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="blob", nullable=true)
      */
-    private $createdAt;
+    private $scanParameter;
 
     /**
-     * @var float|null
-     *
-     * @ORM\Column(type="float", scale=2, precision=15, nullable=true)
+     * @ORM\Column(type="string", options={"default"="pending"}, nullable=true)
      */
-    private $finalSum;
-
-    /**
-     * @var int|null
-     *
-     * @ORM\Column(type="integer", nullable=true)
-     */
-    private $serialNr;
-
-    /**
-     * @var string|null
-     *
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $requisites;
+    private $scanStatus;
 
     /**
      * @var string|null
      *
      * @ORM\Column(type="date", nullable=true)
      */
-    private $documentDate;
+    private $invoiceDate;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=10, nullable=true)
+     */
+    private $invoiceSeries;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $invoiceNumber;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $invoiceBuyerName;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $invoiceBuyerAddress;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $invoiceBuyerCode;
+
+    /**
+     * @var string|null
+     *
+     * @ORM\Column(type="string", length=20, nullable=true)
+     */
+    private $invoiceBuyerVatCode;
+
+    /**
+     * @var float|null
+     *
+     * @ORM\Column(type="decimal", scale=2, precision=10, nullable=true)
+     */
+    private $invoiceTotal;
+
+    /**
+     * @var \DateTime
+     * 
+     * @ORM\Column(type="datetime")
+     */
+    private $creatTime;
 
 
     /**
      */
     public function __construct()
     {
-        $this->createdAt = new \DateTime();
+        $this->creatTime = new \DateTime();
     }
 
-    public function getId(): ?int
+    public function getDocumentId(): ?int
     {
-        return $this->id;
+        return $this->documentId;
     }
 
-    public function getOriginalFilePath(): ?string
+    public function getTemplateId(): ?int
     {
-        return $this->originalFilePath;
+        return $this->templateId;
     }
 
-    public function setOriginalFilePath(string $originalFilePath): self
+    public function setTemplateId(int $templateId): self
     {
-        $this->originalFilePath = $originalFilePath;
+        $this->templateId = $templateId;
 
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
+    public function getOriginalFile(): ?string
     {
-        return $this->createdAt;
+        return $this->originalFile;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    public function setOriginalFile(string $originalFile): self
     {
-        $this->createdAt = $createdAt;
+        $this->originalFile = $originalFile;
 
         return $this;
     }
 
-
-    public function getFinalSum(): ?float
+    public function getScanParameter()
     {
-        return $this->finalSum;
+        return $this->scanParameter;
     }
 
-    public function setFinalSum(?float $finalSum): self
+    public function setScanParameter($scanParameter): self
     {
-        $this->finalSum = $finalSum;
+        $this->scanParameter = $scanParameter;
 
         return $this;
     }
 
-    public function getSerialNr(): ?int
+    public function getScanStatus(): ?string
     {
-        return $this->serialNr;
+        return $this->scanStatus;
     }
 
-    public function setSerialNr(?int $serialNr): self
+    public function setScanStatus(string $scanStatus): self
     {
-        $this->serialNr = $serialNr;
+        if (!in_array($scanStatus, array(self::STATUS_PROCESSING, self::STATUS_ERROR, self::STATUS_SUCCESS))) {
+            throw new \InvalidArgumentException("pending");
+        }
+        $this->scanStatus = $scanStatus;
+    }
+
+    public function getInvoiceDate(): ?\DateTimeInterface
+    {
+        return $this->invoiceDate;
+    }
+
+    public function setInvoiceDate(?\DateTimeInterface $invoiceDate): self
+    {
+        $this->invoiceDate = $invoiceDate;
 
         return $this;
     }
 
-    public function getRequisites(): ?string
+    public function getInvoiceSeries(): ?string
     {
-        return $this->requisites;
+        return $this->invoiceSeries;
     }
 
-    public function setRequisites(?string $requisites): self
+    public function setInvoiceSeries(?string $invoiceSeries): self
     {
-        $this->requisites = $requisites;
+        $this->invoiceSeries = $invoiceSeries;
 
         return $this;
     }
 
-    public function getDocumentDate(): ?\DateTimeInterface
+    public function getInvoiceNumber(): ?string
     {
-        return $this->documentDate;
+        return $this->invoiceNumber;
     }
 
-    public function setDocumentDate(?\DateTimeInterface $documentDate): self
+    public function setInvoiceNumber(?string $invoiceNumber): self
     {
-        $this->documentDate = $documentDate;
+        $this->invoiceNumber = $invoiceNumber;
 
         return $this;
+    }
+
+    public function getInvoiceBuyerName(): ?string
+    {
+        return $this->invoiceBuyerName;
+    }
+
+    public function setInvoiceBuyerName(?string $invoiceBuyerName): self
+    {
+        $this->invoiceBuyerName = $invoiceBuyerName;
+
+        return $this;
+    }
+
+    public function getInvoiceBuyerAddress(): ?string
+    {
+        return $this->invoiceBuyerAddress;
+    }
+
+    public function setInvoiceBuyerAddress(?string $invoiceBuyerAddress): self
+    {
+        $this->invoiceBuyerAddress = $invoiceBuyerAddress;
+
+        return $this;
+    }
+
+    public function getInvoiceBuyerCode(): ?string
+    {
+        return $this->invoiceBuyerCode;
+    }
+
+    public function setInvoiceBuyerCode(?string $invoiceBuyerCode): self
+    {
+        $this->invoiceBuyerCode = $invoiceBuyerCode;
+
+        return $this;
+    }
+
+    public function getInvoiceBuyerVatCode(): ?string
+    {
+        return $this->invoiceBuyerVatCode;
+    }
+
+    public function setInvoiceBuyerVatCode(?string $invoiceBuyerVatCode): self
+    {
+        $this->invoiceBuyerVatCode = $invoiceBuyerVatCode;
+
+        return $this;
+    }
+
+    public function getInvoiceTotal()
+    {
+        return $this->invoiceTotal;
+    }
+
+    public function setInvoiceTotal($invoiceTotal): self
+    {
+        $this->invoiceTotal = $invoiceTotal;
+
+        return $this;
+    }
+
+    public function getCreatTime(): ?\DateTimeInterface
+    {
+        return $this->creatTime;
     }
 }

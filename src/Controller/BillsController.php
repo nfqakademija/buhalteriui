@@ -33,12 +33,12 @@ class BillsController extends AbstractController
                 $fileName
             );
 
-            $document->setOriginalFilePath($fileName);
+            $document->setOriginalFile($fileName);
 
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('documents', ['document' => $document->getId()]);
+            return $this->redirectToRoute('documents', ['document' => $document->getDocumentId()]);
         }
 
         return $this->render('bills/index.html.twig', array(

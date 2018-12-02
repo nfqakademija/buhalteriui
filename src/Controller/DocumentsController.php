@@ -24,13 +24,13 @@ class DocumentsController extends AbstractController
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('documents', ['document' => $document->getId()]);
+            return $this->redirectToRoute('documents', ['document' => $document->getDocumentId()]);
         }
 
         return $this->render(
             'documents/index.html.twig',
             [
-                'file' => $document->getOriginalFilePath(),
+                'file' => $document->getOriginalFile(),
                 'form' => $form->createView(),
             ]
         );
