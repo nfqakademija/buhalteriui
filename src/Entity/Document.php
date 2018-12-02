@@ -9,7 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Document
 {
-    const STATUS_PROCESSING = 'procesing';
+    const STATUS_PROCESSING = 'processing';
     const STATUS_SUCCESS = 'success';
     const STATUS_ERROR = 'error';
 
@@ -38,9 +38,9 @@ class Document
     private $scanParameter;
 
     /**
-     * @ORM\Column(type="string", options={"default"="pending"}, nullable=true)
+     * @ORM\Column(type="string", options={"default"="processing"}, nullable=true)
      */
-    private $scanStatus;
+    private $scanStatus = 'processing';
 
     /**
      * @var string|null
@@ -103,14 +103,14 @@ class Document
      * 
      * @ORM\Column(type="datetime")
      */
-    private $creatTime;
+    private $createTime;
 
 
     /**
      */
     public function __construct()
     {
-        $this->creatTime = new \DateTime();
+        $this->createTime = new \DateTime();
     }
 
     public function getDocumentId(): ?int
@@ -162,9 +162,11 @@ class Document
     public function setScanStatus(string $scanStatus): self
     {
         if (!in_array($scanStatus, array(self::STATUS_PROCESSING, self::STATUS_ERROR, self::STATUS_SUCCESS))) {
-            throw new \InvalidArgumentException("pending");
+            throw new \InvalidArgumentException("processing");
         }
         $this->scanStatus = $scanStatus;
+    
+        return $this;
     }
 
     public function getInvoiceDate(): ?\DateTimeInterface
@@ -263,8 +265,8 @@ class Document
         return $this;
     }
 
-    public function getCreatTime(): ?\DateTimeInterface
+    public function getCreateTime(): ?\DateTimeInterface
     {
-        return $this->creatTime;
+        return $this->createTime;
     }
 }
