@@ -1,3 +1,6 @@
+###> project specific ###
+/public/uploads/
+###< project specific ###
 
 ###> symfony/framework-bundle ###
 /.env
