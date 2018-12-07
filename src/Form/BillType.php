@@ -14,10 +14,10 @@ class BillType extends AbstractType
     {
         $builder
         ->add('bill', FileType::class, [
-        'attr' => ['class' => 'form-control']
+        'attr' => ['submit' => 'form-control']
         ])
-        ->add('Įkelti', SubmitType::class, [
-            'attr'=> ['class' => 'btn btn-outline-success mt-1']
+        ->add('submit', SubmitType::class, [
+            'attr'=> ['class' => 'btn btn-success btn-lg btn-block']
         ]);
     }
 

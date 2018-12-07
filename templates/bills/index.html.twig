@@ -1,16 +1,41 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Pagalba Buhalteriui{% endblock %}
+{% block title %}Hello!{% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    <style>
+    html,
+    body {
+        background-image: url('/assets/images/cover.jpg');
+        background-size: cover;
+        background-repeat: no-repeat;
+        height: 100%;
+        font-family: 'Numans', sans-serif;
+    }
 
+    body {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    }
+        .card{
+            background-color: rgba(0,0,0,0.5) !important;
+        }
+    </style>
+{% endblock %}
 {% block body %}
-    <div class="col-md-3 mx-auto">
-        <div class="card border-dark mt-5">
-            <h5 class="card-header bg-dark text-white">
-                <strong>Įkelkite savo sąskaitą</strong>
-            </h5>
+    <div class="splash-container">
+        <div class="card">
+            <div class="card-header text-center bg-dark text-white-50">Please enter your user information.</div>
             <div class="card-body">
                 {{ form_start(form) }}
-                {{ form_row(form.bill) }}
+                    <div class="form-group">
+                        {{form_widget(form.bill)}}
+                    </div>
+                    {{form_widget(form.submit, { 'label': 'Įkelti' })}}
                 {{ form_end(form) }}
             </div>
         </div>

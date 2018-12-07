@@ -46,8 +46,8 @@ class DocumentType extends AbstractType
                 'label' => 'Galutine suma',
                 'attr' => ['class' => 'form-control']
             ])
-            ->add('Išsaugoti', SubmitType::class, [
-                'attr'=> ['class' => 'btn btn-outline-info mt-1']
+            ->add('submit', SubmitType::class, [
+                'attr'=> ['class' => 'btn btn-space btn-success']
             ]);
     }
 

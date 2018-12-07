@@ -1,21 +1,173 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Redaguokite savo sąskaitą{% endblock %}
+{% block title %}Hello!{% endblock %}
+
 
 {% block body %}
-    <div class="text-center">
-        <h1>Redaguokite savo sąskaitą</h1>
-    </div>
-    <main class="container">
-        <section class="row jumbotron">
-            <article class="col-md-6">
-                <img class="img-fluid" src="/uploads/bills/{{ file }}"/>
-            </article>
-            <article class="col-md-6">
-                <div class="card-body">
-                    {{ form(form) }}
+    <div class="dashboard-main-wrapper">
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+        <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            {# <li class="nav-divider">
+                                Menu
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link active" href="#">Dashboard <span class="badge badge-success">6</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">UI Elements</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Chart</a>
+                            </li>
+                            <li class="nav-item ">
+                                <a class="nav-link" href="#">Forms</a>
+                            </li> #}
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid  dashboard-content">
+                <!-- ============================================================== -->
+                <!-- pageheader -->
+                <!-- ============================================================== -->
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                        <div class="page-header">
+                            <h2 class="pageheader-title">Pagalba Buhalteriui </h2>
+                        </div>
+                    </div>
                 </div>
-            </article>
-        </section>
-    </main>
+                <!-- ============================================================== -->
+                <!-- end pageheader -->
+                <!-- ============================================================== -->
+                    <div class="row">
+                        <!-- ============================================================== -->
+                        <!-- basic form -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Jūsų sąskaita</h5>
+                                <div class="card-body">
+                                    <img class="img-fluid" src="/uploads/bills/{{ file }}" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end basic form -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- horizontal form -->
+                        <!-- ============================================================== -->
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="card">
+                                <h5 class="card-header">Sąskaitos duomenys</h5>
+                                <div class="card-body">
+                                    {{ form_start(form) }}
+                                        <div class="form-group row">
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Sąskaitos serija</label>
+                                            <div class="col-9 col-lg-10">
+
+                                                {{form_widget(form.invoiceSeries)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Sąskaitos numeris</label>
+                                            <div class="col-9 col-lg-10">
+                                                {{form_widget(form.invoiceNumber)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Pirkėjo vardas</label>
+                                            <div class="col-9 col-lg-10">
+                                                {{form_widget(form.invoiceBuyerName)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Pirkėjo Adresas</label>
+                                            <div class="col-9 col-lg-10">
+                                                {{form_widget(form.invoiceBuyerAddress)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Pirkėjo kodas</label>
+                                            <div class="col-9 col-lg-10">
+                                                {{form_widget(form.invoiceBuyerCode)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputEmail2" class="col-3 col-lg-2 col-form-label text-right">Pirkėjo VAT kodas</label>
+                                            <div class="col-9 col-lg-10">
+                                                {{form_widget(form.invoiceBuyerVatCode)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputPassword2" class="col-3 col-lg-2 col-form-label text-right">Sąskaitos data</label>
+                                            <div class="col-9 col-lg-10">
+                                                {{form_widget(form.invoiceDate)}}
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label class="col-3 col-lg-2 col-form-label text-right">Galutinė suma</label>
+                                            <div class="col-9 col-lg-10">
+                                                {{form_widget(form.invoiceTotal)}}
+                                            </div>
+                                        </div>
+
+                                            <div class="col-sm-6 pl-0 float-right mt-3">
+                                                <p class="text-right">
+                                                    {{form_widget(form.submit, { 'label': 'Išsaugoti' })}}
+                                                </p>
+                                            </div>
+                                    {{ form_end(form) }}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- ============================================================== -->
+                        <!-- end horizontal form -->
+                        <!-- ============================================================== -->
+                    </div>
+
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            Copyright © 2018 Concept. All rights reserved.
+                        </div>
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                            <div class="text-md-right footer-links d-none d-sm-block">
+                                <a href="javascript: void(0);">About</a>
+                                <a href="javascript: void(0);">Support</a>
+                                <a href="javascript: void(0);">Contact Us</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
 {% endblock %}
