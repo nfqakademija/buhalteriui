@@ -4,8 +4,12 @@ namespace App\Controller;
 
 use App\Service\ImageParser;
 use App\Service\ImageSlicer;
+use Pagerfanta\Adapter\DoctrineORMAdapter;
+use Pagerfanta\Exception\NotValidCurrentPageException;
+use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Filesystem\Filesystem;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use App\Form\DocumentType;
@@ -125,6 +129,39 @@ class DocumentsController extends AbstractController
             [
                 'file' => $document->getOriginalFile(),
                 'form' => $form->createView(),
+            ]
+        );
+    }
+    
+    /**
+     * @param Request $request
+     * @Route("/documents", name="document_list")
+     */
+    public function documentList(Request $request)
+    {
+        $page = $request->query->get('page', 1);
+        $queryBuilder = $this->getDoctrine()->getRepository(Document::class)->findAllQueryBuilder();
+        $adapter = new DoctrineORMAdapter($queryBuilder);
+        
+        $pagerFanta = new Pagerfanta($adapter);
+        $pagerFanta->setMaxPerPage(10);
+        
+        try {
+            $pagerFanta->setCurrentPage($page);
+        } catch (NotValidCurrentPageException $e) {
+            throw new NotFoundHttpException();
+        }
+        
+        $documents = [];
+        foreach($pagerFanta->getCurrentPageResults() as $document){
+            $documents[] = $document;
+        }
+        
+        return $this->render(
+            'documents/list.html.twig',
+            [
+                'documents' => $pagerFanta->getCurrentPageResults(),
+                'pager' => $pagerFanta,
             ]
         );
     }
