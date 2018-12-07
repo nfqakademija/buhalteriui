@@ -12,7 +12,7 @@
             <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Data</th>
+                <th scope="col">Sąsk. data</th>
                 <th scope="col">Serija</th>
                 <th scope="col">Klientas</th>
                 <th scope="col">Į.k.</th>
@@ -51,7 +51,8 @@
                         {{ document.invoiceTotal }}
                     </td>
                     <td class="{% if document.scanStatus == 'success' %}bg-success{% elseif document.scanStatus == 'error' %}bg-danger{% else %}bg-warning{% endif %} text-white">
-                        {{ document.scanStatus }}
+                        {{ document.scanStatus }}<br>
+                        <small>{{ document.createTime|date("Y-m-d H:i") }}</small>
                     </td>
                 </tr>
             {% endfor %}
