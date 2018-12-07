@@ -52,14 +52,14 @@ class ImageParser
             
             case 'invoice_series':
                 //Serija SS Nr. 12345
-                if (preg_match('#Serija\s+(?<series>[A-Z]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i', trim($text), $matches)) {
+                if (preg_match('#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i', trim($text), $matches)) {
                     return $matches['series'];
                 }
                 break;
             
             case 'invoice_number':
                 //Serija SS Nr. 12345
-                if (preg_match('#Serija\s+(?<series>[A-Z]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i', trim($text), $matches)) {
+                if (preg_match('#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i', trim($text), $matches)) {
                     return $matches['number'];
                 }
                 break;
