@@ -3,63 +3,65 @@
 {% block title %}Įkeltos sąskaitos{% endblock %}
 
 {% block body %}
-<header class="jumbotron bg-dark text-white text-center">
-    <h1>Įkeltos sąskaitos</h1>
-</header>
-<main class="container">
-    <table class="table table-bordered">
-        <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Data</th>
-            <th scope="col">Serija</th>
-            <th scope="col">Klientas</th>
-            <th scope="col">Į.k.</th>
-            <th scope="col">PVM k.</th>
-            <th scope="col">Adresas</th>
-            <th scope="col">Viso</th>
-            <th scope="col">Būsena</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for document in documents %}
-            <tr>
-                <th scope="row">
-                    <a href="{{ path('documents', {document: document.documentId}) }}" class="text-primary">{{ document.documentId }}</a>
-                </th>
-                <td>
-                    {{ document.invoiceDate|date("Y-m-d") }}
-                </td>
-                <td>
-                    {{ document.invoiceSeries }}-{{ document.invoiceNumber }}
-                </td>
-                <td>
-                    {{ document.invoiceBuyerName }}
-                </td>
-                <td>
-                    {{ document.invoiceBuyerCode }}
-                </td>
-                <td>
-                    {{ document.invoiceBuyerVatCode }}
-                </td>
-                <td>
-                    {{ document.invoiceBuyerAddress }}
-                </td>
-                <td>
-                    {{ document.invoiceTotal }}
-                </td>
-                <td class="{% if document.scanStatus == 'success' %}bg-success{% elseif document.scanStatus == 'error' %}bg-danger{% else %}bg-warning{% endif %} text-white">
-                    {{ document.scanStatus }}
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    {% if pager.haveToPaginate %}
-    <div class="pagerfanta">
-        {{ pagerfanta(pager, 'twitter_bootstrap4') }}
+    <div class=" text-center">
+        <h1>Įkeltos sąskaitos</h1>
     </div>
-    {% endif %}
-</main>
+
+    <main class="container">
+        <table class="table table-bordered">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Data</th>
+                <th scope="col">Serija</th>
+                <th scope="col">Klientas</th>
+                <th scope="col">Į.k.</th>
+                <th scope="col">PVM k.</th>
+                <th scope="col">Adresas</th>
+                <th scope="col">Viso</th>
+                <th scope="col">Būsena</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for document in documents %}
+                <tr>
+                    <th scope="row">
+                        <a href="{{ path('documents', {document: document.documentId}) }}"
+                           class="text-primary">{{ document.documentId }}</a>
+                    </th>
+                    <td>
+                        {{ document.invoiceDate|date("Y-m-d") }}
+                    </td>
+                    <td>
+                        {{ document.invoiceSeries }}-{{ document.invoiceNumber }}
+                    </td>
+                    <td>
+                        {{ document.invoiceBuyerName }}
+                    </td>
+                    <td>
+                        {{ document.invoiceBuyerCode }}
+                    </td>
+                    <td>
+                        {{ document.invoiceBuyerVatCode }}
+                    </td>
+                    <td>
+                        {{ document.invoiceBuyerAddress }}
+                    </td>
+                    <td>
+                        {{ document.invoiceTotal }}
+                    </td>
+                    <td class="{% if document.scanStatus == 'success' %}bg-success{% elseif document.scanStatus == 'error' %}bg-danger{% else %}bg-warning{% endif %} text-white">
+                        {{ document.scanStatus }}
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        {% if pager.haveToPaginate %}
+            <div class="pagerfanta">
+                {{ pagerfanta(pager, 'twitter_bootstrap4') }}
+            </div>
+        {% endif %}
+    </main>
 {% endblock %}

@@ -1,15 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello!{% endblock %}
+{% block title %}Redaguokite savo sąskaitą{% endblock %}
 
 {% block body %}
-<header class="jumbotron bg-dark text-white text-center">
+    <div class="text-center">
         <h1>Redaguokite savo sąskaitą</h1>
-    </header>
+    </div>
     <main class="container">
         <section class="row jumbotron">
             <article class="col-md-6">
-                <img class="img-fluid" src="/uploads/bills/{{ file }}" />
+                <img class="img-fluid" src="/uploads/bills/{{ file }}"/>
             </article>
             <article class="col-md-6">
                 <div class="card-body">

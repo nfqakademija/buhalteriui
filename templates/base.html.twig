@@ -1,19 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}{{ "My project" }}{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
-        {% endblock %}
-        <meta name="viewport" content="width=device-width,initial-scale=1.0">
-        <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico')}}">
-        {% block canonical_meta %}{% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-        {% block javascripts %}
-            <script src="{{ asset('build/js/app.js') }}"></script>
-        {% endblock %}
-    </body>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{{ "My project" }}{% endblock %}</title>
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('build/css/app.css') }}">
+    {% endblock %}
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}">
+    {% block canonical_meta %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" href="#">Pagalba buhalteriui</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item"> {#active#}
+                    <a class="nav-link" href="{{ path('bills') }}">Įkelti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('document_list') }}">Sąrašas</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% block body %}{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('build/js/app.js') }}"></script>
+{% endblock %}
+</body>
 </html>
