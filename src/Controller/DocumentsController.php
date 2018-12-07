@@ -128,6 +128,7 @@ class DocumentsController extends AbstractController
             'documents/index.html.twig',
             [
                 'file' => $document->getOriginalFile(),
+                'document' => $document,
                 'form' => $form->createView(),
             ]
         );

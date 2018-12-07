@@ -40,7 +40,7 @@ class DocumentType extends AbstractType
             ])
             ->add('invoiceDate', DateType::class, [
                 'label' => 'Data',
-                'attr' => ['class' => 'form-control']
+                'attr' => ['class' => 'input-group']
             ])
             ->add('invoiceTotal', NumberType::class, [
                 'label' => 'Galutine suma',
