@@ -18,7 +18,8 @@
         "symfony/twig-bundle": "*",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "*",
-        "thiagoalessio/tesseract_ocr": "^2.7"
+        "thiagoalessio/tesseract_ocr": "^2.7",
+        "white-october/pagerfanta-bundle": "^1.2"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "^3.3",
