@@ -141,6 +141,7 @@ class DocumentsController extends AbstractController
     {
         $page = $request->query->get('page', 1);
         $queryBuilder = $this->getDoctrine()->getRepository(Document::class)->findAllQueryBuilder();
+        $queryBuilder->orderBy('Document.documentId', 'DESC');
         $adapter = new DoctrineORMAdapter($queryBuilder);
         
         $pagerFanta = new Pagerfanta($adapter);
