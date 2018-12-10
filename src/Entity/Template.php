@@ -22,7 +22,7 @@ class Template
     private $title;
 
     /**
-     * @ORM\Column(type="json", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     private $parameters = [];
 
