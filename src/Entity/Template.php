@@ -30,6 +30,11 @@ class Template
      * @ORM\Column(type="datetime")
      */
     private $createTime;
+    
+    public function __construct()
+    {
+        $this->createTime = new \DateTime();
+    }
 
     public function getTemplateId(): ?int
     {
