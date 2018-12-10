@@ -18,13 +18,11 @@ class ImageSlicerController extends Controller
      */
     public function index(Request $request, Document $document)
     {
-        //$projectDir = $this->get('kernel')->getProjectDir() . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR;
         $projectDir = 'uploads/';
-        $billsDir = $projectDir . 'bills/';
-        $slicesDir = $projectDir . 'slices/';
-        //$slicesDir = $this->get('kernel')->getProjectDir() . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . 'slices' . DIRECTORY_SEPARATOR;
+        $billsDir = $this->getParameter('bills_directory') . '/';
+        $slicesDir = $this->getParameter('slices_directory') . '/';
         
-        $billImagePath = $billsDir . $document->getOriginalFilePath();
+        $billImagePath = $billsDir . $document->getOriginalFile();
         
         //*
         $x_shift = 0;
@@ -144,13 +142,14 @@ class ImageSlicerController extends Controller
                 }
             }
             $slice['text'] = $reader->run();
+            $slice['image_path'] = $projectDir . $slice['file_name'];
             
             if (isset($slice['methods'])) {
                 foreach ($slice['methods'] as $method => $argument) {
                     $slice['text'] = $this->{$method}($slice['text'], $argument);
                 }
             }
-            $imageSlicesReturn[$slice['key']] = array_intersect_key($slice, ['key' => 1, 'box' => 1, 'file_path' => 1, 'text' => 1]);
+            $imageSlicesReturn[$slice['key']] = array_intersect_key($slice, ['key' => 1, 'box' => 1, 'image_path' => 1, 'text' => 1]);
         }
         
         if ($request->get('return') === 'html') {
