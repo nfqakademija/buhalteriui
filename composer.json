@@ -15,6 +15,7 @@
         "symfony/framework-bundle": "*",
         "symfony/monolog-bundle": "^3.3",
         "symfony/orm-pack": "^1.0",
+        "symfony/phpunit-bridge": "4.1.*",
         "symfony/twig-bundle": "*",
         "symfony/webpack-encore-pack": "^1.0",
         "symfony/yaml": "*",
@@ -25,7 +26,6 @@
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "squizlabs/php_codesniffer": "^3.3",
         "symfony/maker-bundle": "^1.9",
-        "symfony/phpunit-bridge": "4.1.*",
         "symfony/profiler-pack": "^1.0"
     },
     "config": {
