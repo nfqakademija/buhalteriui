@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Form;
 
 use Symfony\Component\Form\AbstractType;
@@ -7,7 +8,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
-
 
 class DocumentType extends AbstractType
 {
@@ -47,8 +47,8 @@ class DocumentType extends AbstractType
                 'attr' => ['class' => 'form-control']
             ])
             ->add('submit', SubmitType::class, [
-                'attr'=> ['class' => 'btn btn-space btn-success']
+                'attr' => ['class' => 'btn btn-space btn-success']
             ]);
     }
-
+    
 }

@@ -149,7 +149,10 @@ class ImageSlicerController extends Controller
                     $slice['text'] = $this->{$method}($slice['text'], $argument);
                 }
             }
-            $imageSlicesReturn[$slice['key']] = array_intersect_key($slice, ['key' => 1, 'box' => 1, 'image_path' => 1, 'text' => 1]);
+            $imageSlicesReturn[$slice['key']] = array_intersect_key(
+                $slice,
+                ['key' => 1, 'box' => 1, 'image_path' => 1, 'text' => 1]
+            );
         }
         
         if ($request->get('return') === 'html') {

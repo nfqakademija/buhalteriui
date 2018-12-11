@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matas
- * Date: 2018-11-19
- * Time: 20:54
- */
 
 namespace App\Service;
-
 
 class ImageSlicer
 {
@@ -17,17 +10,17 @@ class ImageSlicer
     
     public function __construct(string $imagePath, string $slicesPath)
     {
-        if(!file_exists($imagePath)){
+        if (!file_exists($imagePath)) {
             echo 'file not exists';
             exit;
         }
         
         $this->image = imagecreatefromjpeg($imagePath);
-        if($this->image === false){
+        if ($this->image === false) {
             echo 'imagecreatefromjpeg error';
             exit;
         }
-    
+        
         $this->slicesPath = $slicesPath;
     }
     
@@ -35,17 +28,17 @@ class ImageSlicer
     {
         $image_preix = time();
         
-        foreach($slices as &$slice){
+        foreach ($slices as &$slice) {
             $resurce = $this->crop($slice['box']);
-            $status = imagepng($resurce, $this->slicesPath.$image_preix.'_'.$slice['key'].'.png');
+            $status = imagepng($resurce, $this->slicesPath . $image_preix . '_' . $slice['key'] . '.png');
             imagedestroy($resurce);
-            if($status === false){
-                echo 'imagepng error: '.$this->slicesPath.$image_preix.'_'.$slice['key'].'.png';
+            if ($status === false) {
+                echo 'imagepng error: ' . $this->slicesPath . $image_preix . '_' . $slice['key'] . '.png';
                 exit;
             }
             
-            $slice['file_name'] = $image_preix.'_'.$slice['key'].'.png';
-            $slice['file_path'] = $this->slicesPath.$image_preix.'_'.$slice['key'].'.png';
+            $slice['file_name'] = $image_preix . '_' . $slice['key'] . '.png';
+            $slice['file_path'] = $this->slicesPath . $image_preix . '_' . $slice['key'] . '.png';
         }
         unset($slice);
         

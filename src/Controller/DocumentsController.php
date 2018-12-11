@@ -34,7 +34,7 @@ class DocumentsController extends AbstractController
             $this->getDoctrine()->getManager()->flush();
             
             return $this->redirectToRoute('documents', ['document' => $document->getDocumentId()]);
-        } else if ($document->getScanStatus() === Document::STATUS_PROCESSING) {
+        } elseif ($document->getScanStatus() === Document::STATUS_PROCESSING) {
             $billsDir = $this->getParameter('bills_directory') . '/';
             $slicesDir = $this->getParameter('slices_directory') . '/';
             

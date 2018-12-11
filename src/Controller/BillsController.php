@@ -17,35 +17,35 @@ class BillsController extends AbstractController
     public function index(Request $request)
     {
         $form = $this->createForm(BillType::class);
-
+        
         $form->handleRequest($request);
-
-        if($form->isSubmitted() && $form->isValid()){
-
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            
             $document = new Document();
-
+            
             $file = $form->get('bill')->getData();
-
-            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
-
+            
+            $fileName = $this->generateUniqueFileName() . '.' . $file->guessExtension();
+            
             $file->move(
                 $this->getParameter('bills_directory'),
                 $fileName
             );
-
+            
             $document->setOriginalFile($fileName);
-
+            
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();
-
+            
             return $this->redirectToRoute('documents', ['document' => $document->getDocumentId()]);
         }
-
+        
         return $this->render('bills/index.html.twig', array(
-           'form' => $form->createView()
+            'form' => $form->createView()
         ));
     }
-
+    
     /**
      * @return string
      */

@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Matas
- * Date: 2018-12-02
- * Time: 20:53
- */
 
 namespace App\Service;
-
 
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
@@ -58,14 +51,22 @@ class ImageParser
             
             case 'invoice_series':
                 //Serija SS Nr. 12345
-                if (preg_match('#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i', trim($text), $matches)) {
+                if (preg_match(
+                    '#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i',
+                    trim($text),
+                    $matches)
+                ) {
                     return $matches['series'];
                 }
                 break;
             
             case 'invoice_number':
                 //Serija SS Nr. 12345
-                if (preg_match('#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i', trim($text), $matches)) {
+                if (preg_match(
+                    '#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i',
+                    trim($text),
+                    $matches)
+                ) {
                     return $matches['number'];
                 }
                 break;
