@@ -44,6 +44,7 @@ class DocumentsController extends AbstractController
                 ->getRepository(Template::class)
                 ->find($this->getParameter('template_id'));
             
+            $isScanError = false;
             $fileSystem = new Filesystem();
             $slicer = new ImageSlicer($billImagePath, $slicesDir);
             $imageSlices = $slicer->run($template->getParameters());
@@ -54,7 +55,13 @@ class DocumentsController extends AbstractController
                 $reader->lang('lit');
                 
                 $imageParser = new ImageParser($reader);
-                $text = $imageParser->run($slice);
+                try {
+                    $text = $imageParser->run($slice);
+                } catch (\Exception $e) {
+                    $isScanError = true;
+                    $fileSystem->remove($slice['file_path']);
+                    continue;
+                }
                 
                 $fileSystem->remove($slice['file_path']);
                 
@@ -63,7 +70,7 @@ class DocumentsController extends AbstractController
                 }
             }
             
-            $document->setScanStatus(Document::STATUS_SUCCESS);
+            $document->setScanStatus($isScanError ? Document::STATUS_ERROR : Document::STATUS_SUCCESS);
             
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();
