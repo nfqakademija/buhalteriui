@@ -50,5 +50,4 @@ class DocumentType extends AbstractType
                 'attr' => ['class' => 'btn btn-space btn-success']
             ]);
     }
-    
 }

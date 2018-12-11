@@ -20,5 +20,4 @@ class BillType extends AbstractType
                 'attr' => ['class' => 'btn btn-success btn-lg btn-block']
             ]);
     }
-    
 }

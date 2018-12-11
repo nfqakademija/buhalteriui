@@ -54,8 +54,8 @@ class ImageParser
                 if (preg_match(
                     '#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i',
                     trim($text),
-                    $matches)
-                ) {
+                    $matches
+                )) {
                     return $matches['series'];
                 }
                 break;
@@ -65,8 +65,8 @@ class ImageParser
                 if (preg_match(
                     '#Serija\s+(?<series>[A-Z0-9]{2})\s+Nr\.?\s(?<number>[0-9]+)$#i',
                     trim($text),
-                    $matches)
-                ) {
+                    $matches
+                )) {
                     return $matches['number'];
                 }
                 break;

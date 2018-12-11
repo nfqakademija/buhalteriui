@@ -21,7 +21,6 @@ class BillsController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $document = new Document();
             
             $file = $form->get('bill')->getData();
