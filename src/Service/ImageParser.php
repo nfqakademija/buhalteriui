@@ -39,7 +39,13 @@ class ImageParser
         return $text;
     }
     
-    protected function parse($text, $type): string
+    /**
+     * @todo Move patterns to Template
+     * @param $text
+     * @param $type
+     * @return string
+     */
+    public function parse($text, string $type): string
     {
         $matches = [];
         
@@ -81,10 +87,16 @@ class ImageParser
                 if (strpos($text, '.') === false) {
                     $text = substr_replace($text, '.', -2, 0);
                 }
-                break;
+                if (is_numeric($text) && $text < 99999999 && $text >= 0) {
+                    return $text;
+                }
+                return 0;
+            
+            default:
+                return $text;
         }
         
-        return $text;
+        return '';
     }
     
     protected function return($text, $type)
