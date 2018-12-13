@@ -18,9 +18,7 @@ class BillType extends AbstractType
 //                'required' => true,
                 'attr' => ['submit' => 'form-control'],
                 'constraints' => [
-                    new NotBlank([
-                        'message' => 'Nurodykite dokumentą.',
-                    ]),
+                    new NotBlank(),
                     new Image([
                         'maxSize' => '5M',
                         'mimeTypes' => [
@@ -34,22 +32,6 @@ class BillType extends AbstractType
                         'maxWidth' => 1654,
                         'minHeight' => 2339,
                         'maxHeight' => 2339,
-                        'maxSizeMessage' => 'Įkeliamas dokumentas yra per didelis ({{ size }} {{ suffix }}). ' .
-                            'Maksimalus dydis yra {{ limit }} {{ suffix }}.',
-                        'mimeTypesMessage' => 'Prašome nurodyti JPG bylą',
-                        'disallowEmptyMessage' => 'Prašome nurodyti dokumentą.',
-                        'maxWidthMessage' => 'Dokumentas per platus ({{ width }}px). ' .
-                            'Leidžiamas plotis {{ max_width }}px.',
-                        'minWidthMessage' => 'Dokumentas per siauras ({{ width }}px). ' .
-                            'Leidžiamas plotis {{ min_width }}px.',
-                        'maxHeightMessage' => 'Dokumentas per aukštas ({{ height }}px). ' .
-                            'Leidžiamas aukštis {{ max_height }}px.',
-                        'minHeightMessage' => 'Dokumentas per mažas ({{ height }}px). ' .
-                            'Leidžiamas aukštis {{ min_height }}px.',
-                        'sizeNotDetectedMessage' => 'Nepavyko nustatyti dokumento matmenų',
-                        'allowSquareMessage' => 'Dokumento kraštinės yra lygios ({{ width }}x{{ height }}px). ' .
-                            'Paveiksliukas turi būti stačiakampis.',
-                        'corruptedMessage' => 'Nepavyko nuskaityti dokumento, greičiausiai byla sugadinta.',
                     ]),
                 ]
             ])
