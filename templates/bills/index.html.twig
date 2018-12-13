@@ -33,9 +33,9 @@
             <div class="card-body">
                 {{ form_start(form) }}
                     <div class="form-group">
-                        {{form_widget(form.bill)}}
+                        {{form_row(form.bill, { 'label': 'Pasirinkite JPEG bylą, kurios plotis 1654px ir aukšti 2339px' })}}
                     </div>
-                    {{form_widget(form.submit, { 'label': 'Įkelti' })}}
+                    {{form_widget(form.submit)}}
                 {{ form_end(form) }}
             </div>
         </div>
