@@ -108,11 +108,6 @@ class DocumentsController extends AbstractController
             throw new NotFoundHttpException();
         }
         
-        $documents = [];
-        foreach ($pagerFanta->getCurrentPageResults() as $document) {
-            $documents[] = $document;
-        }
-        
         return $this->render(
             'documents/list.html.twig',
             [
