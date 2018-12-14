@@ -16,7 +16,6 @@ class BillType extends AbstractType
         $builder
             ->add('bill', FileType::class, [
 //                'required' => true,
-                'attr' => ['submit' => 'form-control'],
                 'constraints' => [
                     new NotBlank(),
                     new Image([
