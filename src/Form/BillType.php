@@ -15,7 +15,7 @@ class BillType extends AbstractType
     {
         $builder
             ->add('bill', FileType::class, [
-//                'required' => true,
+                'required' => true,
                 'constraints' => [
                     new NotBlank(),
                     new Image([
@@ -35,6 +35,7 @@ class BillType extends AbstractType
                 ]
             ])
             ->add('submit', SubmitType::class, [
+                'label' => 'Įkelti',
                 'attr' => ['class' => 'btn btn-success btn-lg btn-block']
             ]);
     }
