@@ -30,6 +30,8 @@ class DocumentsController extends AbstractController
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
+            $document->setScanStatus(Document::STATUS_SUCCESS);
+            
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();
             
