@@ -24,7 +24,7 @@ Taip pat atlieka papildomus įkeltų duomenų tikrinimus.
 Paruošti prototipą vienos rūšies ir formato "Kesko senukai" pirkimo sąskaitoms nuskaityti, išsaugoti ir eksportuoti sutartu formatu.
 			
 ### Sprendimas			
-Tinklapis, kuris pagal iš anksto paruoštą duomenų nuskaitymo šabloną, iš skenuotų sąskaitų nuskaito duomenis, išsaugo į duomenų bazę ir paruošia sėkmingai nuskaitytus duomenys eksportavimui CSV formatu.			
+Tinklapis, kuris pagal iš anksto paruoštą duomenų nuskaitymo šabloną, iš skenuotų sąskaitų nuskaito duomenis, išsaugo į duomenų bazę ir paruošia sėkmingai nuskaitytus duomenis eksportavimui CSV formatu.			
 
 # Reikalavimai
 * tesseract: `>=3.05`
