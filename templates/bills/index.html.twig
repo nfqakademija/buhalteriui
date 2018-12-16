@@ -29,11 +29,11 @@
 {% block body %}
     <div class="splash-container">
         <div class="card">
-            <div class="card-header text-center bg-dark text-white-50">Pasirinkite sąskaitą.</div>
+            <div class="card-header text-center bg-dark text-white-50">Pasirinkite sąskaitą JPEG formatu, kurios plotis 1654px ir aukšti 2339px</div>
             <div class="card-body">
                 {{ form_start(form) }}
                     <div class="form-group">
-                        {{form_row(form.bill, { 'label': 'Pasirinkite JPEG bylą, kurios plotis 1654px ir aukšti 2339px' })}}
+                        {{form_row(form.bill, { 'label': ' ' })}}
                     </div>
                     {{form_widget(form.submit)}}
                 {{ form_end(form) }}

@@ -67,7 +67,7 @@
                             <div class="card">
                                 <h5 class="card-header">Jūsų sąskaita</h5>
                                 <div class="card-body">
-                                    <img class="img-fluid" src="/uploads/bills/{{ file }}" />
+                                    <img alt="" class="img-fluid" src="/uploads/bills/{{ file }}" />
                                 </div>
                             </div>
                         </div>
@@ -83,50 +83,50 @@
                                 <div class="card-body">
                                     {{ form_start(form) }}
                                         <div class="form-group row">
-                                            <label for="inputEmail2" class="col-3 col-lg-3 col-form-label text-right">Sąskaitos serija</label>
+                                            <label for="document_invoiceSeries" class="col-3 col-lg-3 col-form-label text-right">Sąskaitos serija</label>
                                             <div class="col-9 col-lg-9">
 
                                                 {{form_widget(form.invoiceSeries)}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputEmail2" class="col-3 col-lg-3 col-form-label text-right">Sąskaitos numeris</label>
+                                            <label for="document_invoiceNumber" class="col-3 col-lg-3 col-form-label text-right">Sąskaitos numeris</label>
                                             <div class="col-9 col-lg-9">
                                                 {{form_widget(form.invoiceNumber)}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputEmail2" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo vardas</label>
+                                            <label for="document_invoiceBuyerName" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo vardas</label>
                                             <div class="col-9 col-lg-9">
                                                 {{form_widget(form.invoiceBuyerName)}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputEmail2" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo Adresas</label>
+                                            <label for="document_invoiceBuyerAddress" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo adresas</label>
                                             <div class="col-9 col-lg-9">
                                                 {{form_widget(form.invoiceBuyerAddress)}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputEmail2" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo kodas</label>
+                                            <label for="document_invoiceBuyerCode" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo kodas</label>
                                             <div class="col-9 col-lg-9">
                                                 {{form_widget(form.invoiceBuyerCode)}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputEmail2" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo VAT kodas</label>
+                                            <label for="document_invoiceBuyerVatCode" class="col-3 col-lg-3 col-form-label text-right">Pirkėjo PVM kodas</label>
                                             <div class="col-9 col-lg-9">
                                                 {{form_widget(form.invoiceBuyerVatCode)}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label for="inputPassword2" class="col-3 col-lg-3 col-form-label text-right">Sąskaitos data</label>
+                                            <label for="document_invoiceDate_year" class="col-3 col-lg-3 col-form-label text-right">Sąskaitos data</label>
                                             <div class="col-9 col-lg-9">
                                                 {{form_widget(form.invoiceDate)}}
                                             </div>
                                         </div>
                                         <div class="form-group row">
-                                            <label class="col-3 col-lg-3 col-form-label text-right">Galutinė suma</label>
+                                            <label for="document_invoiceTotal" class="col-3 col-lg-3 col-form-label text-right">Galutinė suma</label>
                                             <div class="col-9 col-lg-9">
                                                 {{form_widget(form.invoiceTotal)}}
                                             </div>
@@ -169,5 +169,6 @@
             {#<!-- end footer -->#}
             {#<!-- ============================================================== -->#}
         </div>
+    </div>
     </div>
 {% endblock %}
