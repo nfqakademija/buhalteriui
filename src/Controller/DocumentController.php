@@ -17,14 +17,14 @@ use App\Form\DocumentType;
 use App\Entity\Document;
 use thiagoalessio\TesseractOCR\TesseractOCR;
 
-class DocumentsController extends AbstractController
+class DocumentController extends AbstractController
 {
     /**
      * @param Request $request
      * @param Document $document
      * @Route("/documents/{document}", name="documents")
      */
-    public function editBills(Request $request, Document $document)
+    public function edit(Request $request, Document $document)
     {
         $form = $this->createForm(DocumentType::class, $document);
         $form->handleRequest($request);
@@ -39,7 +39,7 @@ class DocumentsController extends AbstractController
         } elseif ($document->getScanStatus() === Document::STATUS_PROCESSING) {
             $billsDir = $this->getParameter('bills_directory') . '/';
             $slicesDir = $this->getParameter('slices_directory') . '/';
-            
+    
             $billImagePath = $billsDir . $document->getOriginalFile();
             
             $template = $this->getDoctrine()
@@ -94,7 +94,7 @@ class DocumentsController extends AbstractController
      * @param Request $request
      * @Route("/documents", name="document_list")
      */
-    public function documentList(Request $request)
+    public function list(Request $request)
     {
         $page = $request->query->get('page', 1);
         $queryBuilder = $this->getDoctrine()->getRepository(Document::class)->findAllQueryBuilder();

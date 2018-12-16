@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Request;
 use App\Form\BillType;
 use App\Entity\Document;
 
-class BillsController extends AbstractController
+class UploadController extends AbstractController
 {
     /**
      * @Route("/", name="bills")
@@ -50,6 +50,6 @@ class BillsController extends AbstractController
      */
     private function generateUniqueFileName()
     {
-        return md5(uniqid());
+        return md5(uniqid('', true));
     }
 }
