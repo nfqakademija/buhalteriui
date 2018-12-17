@@ -55,8 +55,9 @@
                             {{ document.scanStatus }}<br>
                             <small>{{ document.createTime|date("Y-m-d H:i") }}</small>
                         </td>
-                        <td>
-                            <a href="{{ path("document_download", {document: document.documentId}) }}" class="btn btn-sm btn-outline-info">Atsisiųsti</a>
+                        <td class="text-center">
+                            <a href="{{ path('documents', {document: document.documentId}) }}" class="btn btn-sm btn-outline-dark">Redaguoti</a>
+                            <a href="{{ path("document_download", {document: document.documentId}) }}" class="btn btn-sm btn-outline-info mt-3">Atsisiųsti</a>
                         </td>
                     </tr>
                 {% endfor %}
