@@ -127,8 +127,7 @@ class DocumentController extends AbstractController
 
     public function documentExport(Request $request, Document $document)
     {
-       $series = $document->getInvoiceSeries();
-       $number = $document->getInvoiceNumber();
+       $seriesNumber = $document->getInvoiceSeries()."-".$document->getInvoiceNumber();
        $buyerName = $document->getInvoiceBuyerName();
        $buyerAddres = $document->getInvoiceBuyerAddress();
        $buyerCode = $document->getInvoiceBuyerCode();
@@ -140,11 +139,11 @@ class DocumentController extends AbstractController
        header('Content-Disposition: attachment; filename=invoice.csv');
 
        $fp = fopen('php://output', 'w');
-       $list = [$series, $number, $buyerName, $buyerAddres, $buyerCode, $vatCode, $date, $totalPrice];
+       $list = [$date, $seriesNumber, $buyerName, $buyerCode, $vatCode, $buyerAddres, $totalPrice];
        fputcsv($fp, [
-           'Series Nr', 'Invoice Number', 'Buyer Number', 'Buyer Address', 'Buyer Code', 'Buyer VAT Code', 'Invoice Date', 'Total Price',
+        'Sąsk. data','Serija', 'Klientas', 'Į.k.', 'PVM k.', 'Adresas', 'Viso',
            ]);
-           
+
        fputcsv($fp, $list);
        fclose($fp);
 
