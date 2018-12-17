@@ -118,4 +118,37 @@ class DocumentController extends AbstractController
             ]
         );
     }
+
+    /**
+     * @param Request $request
+     * @param Document $document
+     * @Route("/documents/download/{document}", name="document_download")
+     */
+
+    public function documentExport(Request $request, Document $document)
+    {
+       $series = $document->getInvoiceSeries();
+       $number = $document->getInvoiceNumber();
+       $buyerName = $document->getInvoiceBuyerName();
+       $buyerAddres = $document->getInvoiceBuyerAddress();
+       $buyerCode = $document->getInvoiceBuyerCode();
+       $vatCode = $document->getInvoiceBuyerVatCode();
+       $date = date_format($document->getInvoiceDate(), 'Y-m-d');
+       $totalPrice = $document->getInvoiceTotal();
+
+       header('Content-type: text/csv; charset=utf-8' );
+       header('Content-Disposition: attachment; filename=invoice.csv');
+
+       $fp = fopen('php://output', 'w');
+       $list = [$series, $number, $buyerName, $buyerAddres, $buyerCode, $vatCode, $date, $totalPrice];
+       fputcsv($fp, [
+           'Series Nr', 'Invoice Number', 'Buyer Number', 'Buyer Address', 'Buyer Code', 'Buyer VAT Code', 'Invoice Date', 'Total Price',
+           ]);
+           
+       fputcsv($fp, $list);
+       fclose($fp);
+
+       return $this->render('documents/download.html.twig');
+       // $this->redirectToRoute('documents_list');
+   }
 }
