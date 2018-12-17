@@ -26,9 +26,11 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ml-auto">
+                    {% if app.request.attributes.get('_route') != 'bills' %}
                     <li class="nav-item">
                         <a class="nav-link btn btn-space btn-primary" href="{{ path('bills') }}">Įkelti naują</a>
                     </li>
+                    {% endif %}
                     <li class="nav-item">
                         <a class="nav-link btn btn-space btn-primary" href="{{ path('document_list') }}">Dokumentai</a>
                     </li>
