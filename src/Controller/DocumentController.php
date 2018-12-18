@@ -39,7 +39,7 @@ class DocumentController extends AbstractController
         } elseif ($document->getScanStatus() === Document::STATUS_PROCESSING) {
             $billsDir = $this->getParameter('bills_directory') . '/';
             $slicesDir = $this->getParameter('slices_directory') . '/';
-    
+            
             $billImagePath = $billsDir . $document->getOriginalFile();
             
             $template = $this->getDoctrine()
@@ -118,36 +118,36 @@ class DocumentController extends AbstractController
             ]
         );
     }
-
+    
     /**
      * @param Request $request
      * @param Document $document
      * @Route("/documents/download/{document}", name="document_download")
      */
-
+    
     public function documentExport(Request $request, Document $document)
     {
-       $seriesNumber = $document->getInvoiceSeries()."-".$document->getInvoiceNumber();
-       $buyerName = $document->getInvoiceBuyerName();
-       $buyerAddres = $document->getInvoiceBuyerAddress();
-       $buyerCode = $document->getInvoiceBuyerCode();
-       $vatCode = $document->getInvoiceBuyerVatCode();
-       $date = date_format($document->getInvoiceDate(), 'Y-m-d');
-       $totalPrice = $document->getInvoiceTotal();
-
-       header('Content-type: text/csv; charset=utf-8' );
-       header('Content-Disposition: attachment; filename=invoice.csv');
-
-       $fp = fopen('php://output', 'w');
-       $list = [$date, $seriesNumber, $buyerName, $buyerCode, $vatCode, $buyerAddres, $totalPrice];
-       fputcsv($fp, [
-        'Sąsk. data','Serija', 'Klientas', 'Į.k.', 'PVM k.', 'Adresas', 'Viso',
-           ]);
-
-       fputcsv($fp, $list);
-       fclose($fp);
-
-       return $this->render('documents/download.html.twig');
-       // $this->redirectToRoute('documents_list');
-   }
+        $seriesNumber = $document->getInvoiceSeries() . "-" . $document->getInvoiceNumber();
+        $buyerName = $document->getInvoiceBuyerName();
+        $buyerAddres = $document->getInvoiceBuyerAddress();
+        $buyerCode = $document->getInvoiceBuyerCode();
+        $vatCode = $document->getInvoiceBuyerVatCode();
+        $date = date_format($document->getInvoiceDate(), 'Y-m-d');
+        $totalPrice = $document->getInvoiceTotal();
+        
+        header('Content-type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename=invoice.csv');
+        
+        $fp = fopen('php://output', 'w');
+        $list = [$date, $seriesNumber, $buyerName, $buyerCode, $vatCode, $buyerAddres, $totalPrice];
+        fputcsv($fp, [
+            'Sąsk. data', 'Serija', 'Klientas', 'Į.k.', 'PVM k.', 'Adresas', 'Viso',
+        ]);
+        
+        fputcsv($fp, $list);
+        fclose($fp);
+        
+        return $this->render('documents/download.html.twig');
+        // $this->redirectToRoute('documents_list');
+    }
 }
