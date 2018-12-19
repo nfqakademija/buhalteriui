@@ -44,7 +44,11 @@ class DocumentController extends AbstractController
             
             $template = $this->getDoctrine()
                 ->getRepository(Template::class)
-                ->find($this->getParameter('template_id'));
+                ->find($document->getTemplateId());
+            
+            if (!$template) {
+                return $this->redirectToRoute('bills', ['error' => 'unknown_template']);
+            }
             
             $isScanError = false;
             $fileSystem = new Filesystem();
@@ -73,6 +77,10 @@ class DocumentController extends AbstractController
             }
             
             $document->setScanStatus($isScanError ? Document::STATUS_ERROR : Document::STATUS_SUCCESS);
+            
+            if (!$isScanError) {
+                $document->setScanParameter($template->getParameters());
+            }
             
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,9 +20,17 @@ class UploadController extends AbstractController
         $form = $this->createForm(BillType::class);
         
         $form->handleRequest($request);
-        
+    
         if ($form->isSubmitted() && $form->isValid()) {
             $document = new Document();
+    
+            $template = $this->getDoctrine()
+                ->getRepository(Template::class)
+                ->find($this->getParameter('template_id'));
+    
+            if (!$template) {
+                return $this->redirectToRoute('bills', ['error' => 'unknown_template']);
+            }
             
             $file = $form->get('bill')->getData();
             
@@ -33,6 +42,7 @@ class UploadController extends AbstractController
             );
             
             $document->setOriginalFile($fileName);
+            $document->setTemplateId($template->getTemplateId());
             
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();
