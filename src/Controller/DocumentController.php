@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Template;
 use App\Service\ImageParser;
 use App\Service\ImageSlicer;
 use Pagerfanta\Adapter\DoctrineORMAdapter;
@@ -42,18 +41,10 @@ class DocumentController extends AbstractController
             
             $billImagePath = $billsDir . $document->getOriginalFile();
             
-            $template = $this->getDoctrine()
-                ->getRepository(Template::class)
-                ->find($document->getTemplateId());
-            
-            if (!$template) {
-                return $this->redirectToRoute('bills', ['error' => 'unknown_template']);
-            }
-            
             $isScanError = false;
             $fileSystem = new Filesystem();
             $slicer = new ImageSlicer($billImagePath, $slicesDir);
-            $imageSlices = $slicer->run($template->getParameters());
+            $imageSlices = $slicer->run($document->getScanParameter());
             
             foreach ($imageSlices as $slice) {
                 $reader = new TesseractOCR();
@@ -77,10 +68,6 @@ class DocumentController extends AbstractController
             }
             
             $document->setScanStatus($isScanError ? Document::STATUS_ERROR : Document::STATUS_SUCCESS);
-            
-            if (!$isScanError) {
-                $document->setScanParameter($template->getParameters());
-            }
             
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();

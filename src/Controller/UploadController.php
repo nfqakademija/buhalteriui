@@ -40,6 +40,7 @@ class UploadController extends AbstractController
             
             $document->setOriginalFile($fileName);
             $document->setTemplateId($template->getTemplateId());
+            $document->setScanParameter($template->getParameters());
             
             $this->getDoctrine()->getManager()->persist($document);
             $this->getDoctrine()->getManager()->flush();
