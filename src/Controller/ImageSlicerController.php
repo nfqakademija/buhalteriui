@@ -18,7 +18,7 @@ class ImageSlicerController extends Controller
      */
     public function index(Request $request, Document $document)
     {
-        $projectDir = 'uploads/';
+        $projectDir = 'uploads/slices/';
         $billsDir = $this->getParameter('bills_directory') . '/';
         $slicesDir = $this->getParameter('slices_directory') . '/';
         
