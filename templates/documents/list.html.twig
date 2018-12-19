@@ -52,7 +52,6 @@
                             {{ document.invoiceTotal }}
                         </td>
                         <td class="{% if document.scanStatus == 'success' %}bg-success{% elseif document.scanStatus == 'error' %}bg-danger{% else %}bg-warning{% endif %} text-white">
-                            {{ document.scanStatus }}<br>
                             <small>{{ document.createTime|date("Y-m-d H:i") }}</small>
                         </td>
                         <td class="text-center">
