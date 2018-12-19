@@ -1,0 +1,7 @@
+{% block form_errors %}
+    {% spaceless %}
+          {% for error in errors %}
+            <div class="form-control-feedback text-white d-inline"><span class="badge badge-danger mr-2">Klaida</span>{{ error.message }}</div>
+          {% endfor %}
+    {% endspaceless %}
+{% endblock %}

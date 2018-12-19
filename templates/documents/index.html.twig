@@ -5,42 +5,6 @@
 
 {% block body %}
     <div class="dashboard-main-wrapper">
-        {#<!-- ============================================================== -->#}
-        {#<!-- left sidebar -->#}
-        {#<!-- ============================================================== -->#}
-        {#<div class="nav-left-sidebar sidebar-dark">#}
-            {#<div class="menu-list">#}
-                {#<nav class="navbar navbar-expand-lg navbar-light">#}
-                    {#<a class="d-xl-none d-lg-none" href="#">Dashboard</a>#}
-                    {#<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">#}
-                        {#<span class="navbar-toggler-icon"></span>#}
-                    {#</button>#}
-                    {#<div class="collapse navbar-collapse" id="navbarNav">#}
-                        {#<ul class="navbar-nav flex-column">#}
-                            {# <li class="nav-divider">#}
-                                {#Menu#}
-                            {#</li>#}
-                            {#<li class="nav-item ">#}
-                                {#<a class="nav-link active" href="#">Dashboard <span class="badge badge-success">6</span></a>#}
-                            {#</li>#}
-                            {#<li class="nav-item">#}
-                                {#<a class="nav-link" href="#">UI Elements</a>#}
-                            {#</li>#}
-                            {#<li class="nav-item">#}
-                                {#<a class="nav-link" href="#">Chart</a>#}
-                            {#</li>#}
-                            {#<li class="nav-item ">#}
-                                {#<a class="nav-link" href="#">Forms</a>#}
-                            {#</li> #}
-
-                        {#</ul>#}
-                    {#</div>#}
-                {#</nav>#}
-            {#</div>#}
-        {#</div>#}
-        {#<!-- ============================================================== -->#}
-        {#<!-- end left sidebar -->#}
-        {#<!-- ============================================================== -->#}
         <!-- ============================================================== -->
         <!-- wrapper  -->
         <!-- ============================================================== -->
@@ -81,6 +45,7 @@
                             <div class="card">
                                 <h5 class="card-header">Sąskaitos duomenys</h5>
                                 <div class="card-body">
+                                {% form_theme form 'bootstrap_4_layout.html.twig' %}
                                     {{ form_start(form) }}
                                         <div class="form-group row">
                                             <label for="document_invoiceSeries" class="col-3 col-lg-3 col-form-label text-right">Sąskaitos serija</label>
@@ -145,30 +110,7 @@
                         <!-- end horizontal form -->
                         <!-- ============================================================== -->
                     </div>
-
-            {#<!-- ============================================================== -->#}
-            {#<!-- footer -->#}
-            {#<!-- ============================================================== -->#}
-            {#<div class="footer">#}
-                {#<div class="container-fluid">#}
-                    {#<div class="row">#}
-                        {#<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">#}
-                            {#Copyright © 2018 Concept. All rights reserved.#}
-                        {#</div>#}
-                        {#<div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">#}
-                            {#<div class="text-md-right footer-links d-none d-sm-block">#}
-                                {#<a href="javascript: void(0);">About</a>#}
-                                {#<a href="javascript: void(0);">Support</a>#}
-                                {#<a href="javascript: void(0);">Contact Us</a>#}
-                            {#</div>#}
-                        {#</div>#}
-                    {#</div>#}
-                {#</div>#}
-            {#</div>#}
-            {#<!-- ============================================================== -->#}
-            {#<!-- end footer -->#}
-            {#<!-- ============================================================== -->#}
+            </div>
         </div>
-    </div>
     </div>
 {% endblock %}

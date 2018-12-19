@@ -21,9 +21,9 @@
     padding-top: 40px;
     padding-bottom: 40px;
     }
-        .card{
-            background-color: rgba(0,0,0,0.5) !important;
-        }
+    .card{
+        background-color: rgba(0,0,0,0.5) !important;
+    }
     </style>
 {% endblock %}
 {% block body %}
@@ -31,13 +31,38 @@
         <div class="card">
             <div class="card-header text-center bg-dark text-white-50">Pasirinkite sąskaitą JPEG formatu, kurios plotis 1654px ir aukšti 2339px</div>
             <div class="card-body">
+            {% form_theme form 'form/form_errors.html.twig' %}
                 {{ form_start(form) }}
-                    <div class="form-group">
-                        {{form_row(form.bill, { 'label': ' ' })}}
+                {{form_row(form.bill, { 'label':' ' })}}
+                   <div class="p-2 bg-white rounded mb-3 mt-3">
+                        <button type="button" id="custom-button" class="btn btn-sm btn-info">PASIRINKTI</button>
+                        <span class="text-secondary pl-2" id="custom-text">Sąskaita nepasirinkta</span>
                     </div>
                     {{form_widget(form.submit)}}
                 {{ form_end(form) }}
             </div>
         </div>
     </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+    <script>
+        const realFileBtn = document.getElementById("bill_bill");
+        const customBtn = document.getElementById("custom-button");
+        const customTxt = document.getElementById("custom-text");
+
+        customBtn.addEventListener("click", function() {
+        realFileBtn.click();
+        });
+
+        realFileBtn.addEventListener("change", function() {
+        if (realFileBtn.value) {
+            customTxt.innerHTML = realFileBtn.value.match(
+            /[\/\\]([\w\d\s\.\-\(\)]+)$/
+            )[1];
+        } else {
+            customTxt.innerHTML = "No file chosen, yet.";
+        }
+        });
+    </script>
 {% endblock %}
