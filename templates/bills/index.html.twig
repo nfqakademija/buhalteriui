@@ -4,65 +4,71 @@
 {% block stylesheets %}
     {{ parent() }}
     <style>
-    html,
-    body {
-        background-image: url('/assets/images/cover.jpg');
-        background-size: cover;
-        background-repeat: no-repeat;
-        height: 100%;
-        font-family: 'Numans', sans-serif;
-    }
+        html,
+        body {
+            background-image: url('/assets/images/cover.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 100%;
+            font-family: 'Numans', sans-serif;
+        }
 
-    body {
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-align: center;
-    align-items: center;
-    padding-top: 40px;
-    padding-bottom: 40px;
-    }
-    .card{
-        background-color: rgba(0,0,0,0.5) !important;
-    }
+        body {
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-align: center;
+            align-items: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+
+        .card {
+            background-color: rgba(0, 0, 0, 0.5) !important;
+        }
     </style>
 {% endblock %}
 {% block body %}
     <div class="splash-container">
         <div class="card">
-            <div class="card-header text-center bg-dark text-white-50">Pasirinkite sąskaitą JPEG formatu, kurios plotis 1654px ir aukštis 2339px</div>
+            <div class="card-header text-center bg-dark text-white-50">Pasirinkite sąskaitą JPEG formatu, kurios plotis
+                1654px ir aukštis 2339px
+            </div>
             <div class="card-body">
-            {% form_theme form 'form/form_errors.html.twig' %}
+                {% form_theme form 'form/form_errors.html.twig' %}
                 {{ form_start(form) }}
-                {{form_row(form.bill, { 'label':' ' })}}
-                   <div class="p-2 bg-white rounded mb-3 mt-3">
-                        <button type="button" id="custom-button" class="btn btn-sm btn-info">PASIRINKTI</button>
-                        <span class="text-secondary pl-2" id="custom-text">Sąskaita nepasirinkta</span>
-                    </div>
-                    {{form_widget(form.submit)}}
+                <div class="p-2 bg-white rounded mb-3 mt-3 form-group">
+                    {{ form_row(form.template_id) }}
+                </div>
+                {{ form_row(form.bill, { 'label': false }) }}
+                <div class="p-2 bg-white rounded mb-3 mt-3">
+                    <button type="button" id="custom-button" class="btn btn-sm btn-info">PASIRINKTI</button>
+                    <label for="bill_bill" class="text-secondary pl-2" id="custom-text">Sąskaita nepasirinkta</label>
+                </div>
+                {{ form_widget(form.submit) }}
                 {{ form_end(form) }}
             </div>
         </div>
     </div>
 {% endblock %}
 {% block javascripts %}
-{{ parent() }}
+    {{ parent() }}
     <script>
         const realFileBtn = document.getElementById("bill_bill");
         const customBtn = document.getElementById("custom-button");
         const customTxt = document.getElementById("custom-text");
 
-        customBtn.addEventListener("click", function() {
-        realFileBtn.click();
+        customBtn.addEventListener("click", function () {
+            realFileBtn.click();
         });
 
-        realFileBtn.addEventListener("change", function() {
-        if (realFileBtn.value) {
-            customTxt.innerHTML = realFileBtn.value.match(
-            /[\/\\]([\w\d\s\.\-\(\)]+)$/
-            )[1];
-        } else {
-            customTxt.innerHTML = "No file chosen, yet.";
-        }
+        realFileBtn.addEventListener("change", function () {
+            if (realFileBtn.value) {
+                customTxt.innerHTML = realFileBtn.value.match(
+                    /[\/\\]([\w\d\s\.\-\(\)]+)$/
+                )[1];
+            } else {
+                customTxt.innerHTML = "No file chosen, yet.";
+            }
         });
     </script>
 {% endblock %}

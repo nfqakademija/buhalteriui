@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Template;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
@@ -14,6 +16,17 @@ class BillType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('template_id', EntityType::class, [
+                'class' => Template::class,
+                'label' => 'Sąskaitos šablonas',
+                'choice_label' => 'title',
+                'choice_value' => 'template_id',
+                'required' => true,
+                'constraints' => [
+                    new NotBlank(),
+                ],
+                'attr' => ['class' => 'form-control input-group']
+            ])
             ->add('bill', FileType::class, [
                 'attr' => ['hidden' => 'hidden'],
                 'required' => true,
