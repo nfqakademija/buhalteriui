@@ -21,7 +21,7 @@ class Document
     private $documentId;
     
     /**
-     * @ORM\Column(type="integer", options={"default"=0}, nullable=true)
+     * @ORM\Column(type="integer", options={"default"=0, "unsigned"=true})
      */
     private $templateId;
     
@@ -33,7 +33,7 @@ class Document
     private $originalFile;
     
     /**
-     * @ORM\Column(type="blob", nullable=true)
+     * @ORM\Column(type="array", nullable=true)
      */
     private $scanParameter;
     
@@ -147,7 +147,7 @@ class Document
         return $this->scanParameter;
     }
     
-    public function setScanParameter($scanParameter): self
+    public function setScanParameter(?array $scanParameter): self
     {
         $this->scanParameter = $scanParameter;
         
