@@ -85,6 +85,7 @@ class DocumentType extends AbstractType
             ])
             ->add('invoiceDate', DateType::class, [
                 'required' => true,
+                'years' => range(1990, date('Y')+1),
                 'constraints' => [
                     new Date(),
                 ],
