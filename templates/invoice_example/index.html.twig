@@ -1,16 +1,28 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Invoice Examples{% endblock %}
+{% block title %}Sąskaitų pavyzdžiai{% endblock %}
 
 {% block body %}
 <div class="container" style="margin-top:100px">
     <div class="jumbotron">
         <h1 class="text-center mb-5">Sąskaitų pavyzdžiai</h1>
         <div>
-            <a href="http://buhalteriui.projektai.nfqakademija.lt/uploads/senukai-invoice-example-blank.jpg" target="_blank">Senukai pavizdys (Blank)</a>
+            <a href="{{ absolute_url('/uploads/senukai-invoice-example-blank.jpg') }}" target="_blank">Sąskaitos pavyzdys - tuščias lapas</a>
         </div>
         <div>
-            <a href="http://buhalteriui.projektai.nfqakademija.lt/uploads/senukai-invoice-example.jpg" target="_blank">Senukai pavizdys</a>
+            <a href="{{ absolute_url('/uploads/senukai-invoice-example.jpg') }}" target="_blank">Sąskaitos pavyzdys</a>
+        </div>
+        <div>
+            <a href="{{ absolute_url('/uploads/senukai-invoice-example_01.jpg') }}" target="_blank">Sąskaitos pavyzdys #1</a>
+        </div>
+        <div>
+            <a href="{{ absolute_url('/uploads/senukai-invoice-example_02.jpg') }}" target="_blank">Sąskaitos pavyzdys #2</a>
+        </div>
+        <div>
+            <a href="{{ absolute_url('/uploads/senukai-invoice-example_03.jpg') }}" target="_blank">Sąskaitos pavyzdys #3</a>
+        </div>
+        <div>
+            <a href="{{ absolute_url('/uploads/senukai-invoice-example_04.jpg') }}" target="_blank">Sąskaitos pavyzdys #4</a>
         </div>
     </div>
 </div>
